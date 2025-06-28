@@ -1,0 +1,25 @@
+<!-- 
+  This is the main application shell. 
+  You can add a persistent header (navbar) and footer here,
+  outside of the router-outlet.
+-->
+<header class="bg-gray-800 text-white shadow-md p-4">
+    <nav class="container mx-auto flex justify-between items-center">
+      <a href="/home" class="text-xl font-bold">Damien Castro | Developer</a>
+      <div>
+        <a href="/home" class="px-3 py-2 rounded hover:bg-gray-700">Home</a>
+        <!-- <a href="/blog" class="px-3 py-2 rounded hover:bg-gray-700">Blog</a> -->
+        <!-- <a href="/portfolio" class="px-3 py-2 rounded hover:bg-gray-700">Portfolio</a> -->
+      </div>
+    </nav>
+  </header>
+  
+  <main class="flex-grow">
+    <!-- The router-outlet is where Angular will render the component for the current route. -->
+    <router-outlet></router-outlet>
+  </main>
+  
+  <footer class="bg-gray-800 text-white text-center p-4 mt-8">
+    <p>&copy; 2024 Damien Castro. All Rights Reserved.</p>
+  </footer>
+  
