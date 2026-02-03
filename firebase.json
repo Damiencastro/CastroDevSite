@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/castrodevwebsite",
+    "public": "dist/castrodevwebsite/browser",
     "ignore": [
       "firebase.json",
       "**/.*",
