@@ -7,8 +7,7 @@ import { RouterOutlet } from '@angular/router';
   // Import RouterOutlet to enable routing within the application.
   imports: [RouterOutlet],
   // The template will contain the main router outlet where feature components are rendered.
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
   title = 'castrodev-portfolio';
