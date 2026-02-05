@@ -2,34 +2,42 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
-    // The default route, redirects to the home page.
     path: '',
     pathMatch: 'full',
     redirectTo: 'home',
   },
   {
-    // Lazy loads the Home feature. The code for this feature
-    // will only be downloaded when the user navigates to '/home'.
     path: 'home',
     loadChildren: () =>
       import('./features/home/home.routes.js').then((m) => m.HOME_ROUTES),
   },
-  // {
-  //   // Placeholder for the Blog feature. Uncomment when ready.
-  //   path: 'blog',
-  //   loadChildren: () =>
-  //     import('./features/blog/blog.routes').then((m) => m.BLOG_ROUTES),
-  // },
-  // {
-  //   // Placeholder for the Portfolio feature. Uncomment when ready.
-  //   path: 'portfolio',
-  //   loadChildren: () =>
-  //     import('./features/portfolio/portfolio.routes').then((m) => m.PORTFOLIO_ROUTES),
-  // },
   {
-    // Wildcard route for a 404 page.
-    // Consider creating a dedicated 'NotFound' component for this.
+    path: 'about',
+    loadChildren: () =>
+      import('./features/about/about.routes.js').then((m) => m.ABOUT_ROUTES),
+  },
+  {
+    path: 'portfolio',
+    loadChildren: () =>
+      import('./features/portfolio/portfolio.routes.js').then((m) => m.PORTFOLIO_ROUTES),
+  },
+  {
+    path: 'blog',
+    loadChildren: () =>
+      import('./features/blog/blog.routes.js').then((m) => m.BLOG_ROUTES),
+  },
+  {
+    path: 'contact',
+    loadChildren: () =>
+      import('./features/contact/contact.routes.js').then((m) => m.CONTACT_ROUTES),
+  },
+  {
+    path: 'resume',
+    loadChildren: () =>
+      import('./features/resume/resume.routes.js').then((m) => m.RESUME_ROUTES),
+  },
+  {
     path: '**',
-    redirectTo: 'home', // Or redirect to a custom 404 page
+    redirectTo: 'home',
   },
 ];
