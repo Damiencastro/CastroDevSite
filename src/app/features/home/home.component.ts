@@ -14,15 +14,13 @@ export class HomeComponent {
       slug: 'midas',
       name: 'MIDAS',
       tagline: 'Accounting software built with Angular and Firebase',
-      techStack: ['Angular', 'TypeScript', 'Firebase', 'RxJS'],
-      imageUrl: 'https://placehold.co/600x400/E2E8F0/4A5568?text=MIDAS'
+      techStack: ['Angular', 'TypeScript', 'Firebase', 'RxJS']
     },
     {
       slug: 'mobinav',
       name: 'MobiNav',
       tagline: 'Accessibility-focused campus navigation tool',
-      techStack: ['React', 'Flask', 'PostgreSQL', 'Google Maps API'],
-      imageUrl: 'https://placehold.co/600x400/E2E8F0/4A5568?text=MobiNav'
+      techStack: ['React', 'Flask', 'PostgreSQL', 'Google Maps API']
     }
   ];
 
