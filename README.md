@@ -1,6 +1,8 @@
-# Castrodevwebsite
+# Castro.dev
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.4.
+Personal website for Castro.dev, built with [Angular](https://angular.dev) 22 (zoneless), [Tailwind CSS](https://tailwindcss.com) 4 and [AngularFire](https://github.com/angular/angularfire), and deployed to Firebase Hosting.
+
+Requires Node.js 24 (or 22.22.3+).
 
 ## Development server
 
@@ -36,23 +38,15 @@ ng build
 
 This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
+The production build reads the Firebase configuration from `src/environments/environment.production.ts`, which is not committed (the deploy workflows generate it from repository secrets). To build locally, copy `src/environments/environment.ts` to that path and fill in your values. `ng serve` and development builds use `src/environments/environment.ts` directly.
+
 ## Running unit tests
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+To execute unit tests with [Vitest](https://vitest.dev) (running in jsdom, so no browser is needed), use the following command:
 
 ```bash
 ng test
 ```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
 
 ## Additional Resources
 

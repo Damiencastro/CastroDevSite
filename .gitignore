@@ -8,13 +8,10 @@ yarn-error.log*
 firebase-debug.log*
 firebase-debug.*.log*
 *-debug.log
-/libpeerconnection.log
-testem.log
 
 # Dependencies
 # Dependency directories managed by package managers.
 /node_modules/
-bower_components/
 
 # Compiled Output & Build Artifacts
 # Directories and files created during the build process.
@@ -66,7 +63,6 @@ CastroDevWebsite.code-workspace
 # Caches
 # Caching directories from various tools.
 /.angular/cache/
-.sass-cache/
 .npm/
 .eslintcache
 
@@ -76,8 +72,6 @@ pids/
 *.pid
 *.pid.lock
 *.seed
-.grunt/
-.lock-wscript
 /connect.lock
 .node_repl_history
 
