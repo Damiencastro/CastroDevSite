@@ -1,0 +1,99 @@
+/*
+ * Colour palettes
+ * ---------------
+ * Every colour on the site comes from the tokens below. A palette is one block
+ * that sets the eleven core tokens; everything else is derived from them.
+ *
+ * To switch the live palette: change data-palette on <html> in src/index.html.
+ * To try palettes quickly:    run `ng serve` and use the picker (bottom-right).
+ * To add a palette:           copy a block, rename it, change the values, and
+ *                             add the name to src/app/core/palettes.ts so the
+ *                             picker lists it.
+ *
+ * Core tokens
+ *   --page               page background
+ *   --surface            cards and raised panels
+ *   --surface-muted      chips, disabled controls, image placeholders
+ *   --line               borders and dividers
+ *   --ink                headings and primary text
+ *   --ink-muted          body and secondary text
+ *   --inverse            header, footer, hero and other contrasting bands
+ *   --on-inverse         text on --inverse
+ *   --accent             buttons, links, highlights (on page/surface)
+ *   --on-accent          text on --accent
+ *   --accent-on-inverse  accent tuned to be readable on --inverse
+ */
+
+:root,
+[data-palette='slate'] {
+  color-scheme: light;
+  --page: #f1f5f9;
+  --surface: #ffffff;
+  --surface-muted: #e2e8f0;
+  --line: #d5dde8;
+  --ink: #1e293b;
+  --ink-muted: #475569;
+  --inverse: #1e293b;
+  --on-inverse: #f8fafc;
+  --accent: #2563eb;
+  --on-accent: #ffffff;
+  --accent-on-inverse: #60a5fa;
+}
+
+[data-palette='forest'] {
+  color-scheme: light;
+  --page: #f4f1ea;
+  --surface: #fffdf8;
+  --surface-muted: #e8e3d6;
+  --line: #d9d2c1;
+  --ink: #1f2a24;
+  --ink-muted: #55605a;
+  --inverse: #1c3a2e;
+  --on-inverse: #f4f1ea;
+  --accent: #a84a18;
+  --on-accent: #ffffff;
+  --accent-on-inverse: #eba564;
+}
+
+[data-palette='plum'] {
+  color-scheme: light;
+  --page: #f6f3f7;
+  --surface: #ffffff;
+  --surface-muted: #ebe4ee;
+  --line: #dcd3e0;
+  --ink: #2a2130;
+  --ink-muted: #5f5367;
+  --inverse: #2d1f3d;
+  --on-inverse: #f6f3f7;
+  --accent: #7c3aed;
+  --on-accent: #ffffff;
+  --accent-on-inverse: #c4a5fd;
+}
+
+[data-palette='midnight'] {
+  color-scheme: dark;
+  --page: #0f172a;
+  --surface: #1a2438;
+  --surface-muted: #25314a;
+  --line: #33415c;
+  --ink: #e6ebf4;
+  --ink-muted: #a3b0c5;
+  --inverse: #080d1a;
+  --on-inverse: #e6ebf4;
+  --accent: #2dd4bf;
+  --on-accent: #06201c;
+  --accent-on-inverse: #2dd4bf;
+}
+
+/*
+ * Derived tokens — computed from the core tokens, so a new palette gets them
+ * for free. Any palette block can still override one by setting it directly.
+ */
+:root {
+  --accent-hover: color-mix(in srgb, var(--accent) 85%, black);
+  --accent-soft: color-mix(in srgb, var(--accent) 14%, var(--surface));
+  --on-accent-soft: color-mix(in srgb, var(--accent) 50%, var(--ink));
+  --inverse-raised: color-mix(in srgb, var(--inverse) 86%, var(--on-inverse));
+  --inverse-deep: color-mix(in srgb, var(--inverse) 75%, black);
+  --on-inverse-muted: color-mix(in srgb, var(--on-inverse) 70%, var(--inverse));
+}

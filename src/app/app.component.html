@@ -1,92 +1,84 @@
 <!-- Application Shell: Header, Main Content, Footer -->
 
 <!-- Header / Navigation -->
-<header class="bg-gray-800 text-white shadow-md">
-  <nav class="container mx-auto flex justify-between items-center p-4">
-    <!-- Logo / Brand -->
-    <a routerLink="/home" class="text-xl font-bold hover:text-gray-300 transition duration-300">
-      Damien Castro | Developer
-    </a>
+<header class="bg-inverse text-on-inverse shadow-md">
+  <nav class="wrap py-4" aria-label="Main">
+    <div class="flex items-center justify-between">
+      <!-- Logo / Brand -->
+      <a routerLink="/home" class="text-xl font-bold transition-colors hover:text-accent-on-inverse">
+        Damien Castro | Developer
+      </a>
 
-    <!-- Navigation Links -->
-    <div class="hidden md:flex space-x-1">
-      <a 
-        routerLink="/home" 
-        routerLinkActive="bg-gray-700" 
-        class="px-3 py-2 rounded hover:bg-gray-700 transition duration-300"
-      >
-        Home
-      </a>
-      <a 
-        routerLink="/about" 
-        routerLinkActive="bg-gray-700"
-        class="px-3 py-2 rounded hover:bg-gray-700 transition duration-300"
-      >
-        About
-      </a>
-      <a 
-        routerLink="/portfolio" 
-        routerLinkActive="bg-gray-700"
-        class="px-3 py-2 rounded hover:bg-gray-700 transition duration-300"
-      >
-        Portfolio
-      </a>
-      <a 
-        routerLink="/blog" 
-        routerLinkActive="bg-gray-700"
-        class="px-3 py-2 rounded hover:bg-gray-700 transition duration-300"
-      >
-        Blog
-      </a>
-      <a 
-        routerLink="/resume" 
-        routerLinkActive="bg-gray-700"
-        class="px-3 py-2 rounded hover:bg-gray-700 transition duration-300"
-      >
-        Resume
-      </a>
-      <a 
-        routerLink="/contact" 
-        routerLinkActive="bg-gray-700"
-        class="px-3 py-2 rounded hover:bg-gray-700 transition duration-300"
-      >
-        Contact
-      </a>
-    </div>
+      <!-- Navigation Links -->
+      <div class="hidden gap-1 md:flex">
+        @for (link of navLinks; track link.path) {
+          <a
+            [routerLink]="link.path"
+            routerLinkActive="bg-inverse-raised"
+            ariaCurrentWhenActive="page"
+            class="nav-link"
+          >
+            {{ link.label }}
+          </a>
+        }
+      </div>
 
-    <!-- Mobile Menu Button (placeholder - implement hamburger menu later) -->
-    <div class="md:hidden">
-      <button class="px-3 py-2 rounded hover:bg-gray-700">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <!-- Mobile Menu Button -->
+      <button
+        type="button"
+        class="nav-link md:hidden"
+        aria-label="Toggle navigation menu"
+        aria-controls="mobile-menu"
+        [attr.aria-expanded]="menuOpen()"
+        (click)="menuOpen.set(!menuOpen())"
+      >
+        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
         </svg>
       </button>
     </div>
+
+    <!-- Mobile Menu -->
+    @if (menuOpen()) {
+      <div id="mobile-menu" class="mt-4 flex flex-col gap-1 md:hidden">
+        @for (link of navLinks; track link.path) {
+          <a
+            [routerLink]="link.path"
+            routerLinkActive="bg-inverse-raised"
+            ariaCurrentWhenActive="page"
+            class="nav-link"
+            (click)="menuOpen.set(false)"
+          >
+            {{ link.label }}
+          </a>
+        }
+      </div>
+    }
   </nav>
 </header>
 
 <!-- Main Content Area -->
-<main class="flex-grow min-h-screen bg-gray-100">
-  <router-outlet></router-outlet>
+<main class="grow">
+  <router-outlet />
 </main>
 
 <!-- Footer -->
-<footer class="bg-gray-800 text-white">
-  <div class="container mx-auto px-4 py-8">
+<footer class="bg-inverse text-on-inverse">
+  <div class="wrap py-8">
     <div class="flex flex-col md:flex-row justify-between items-center">
       <!-- Copyright -->
-      <p class="text-gray-400 text-sm">
+      <p class="text-sm text-on-inverse-muted">
         &copy; {{ currentYear }} Damien Castro. All Rights Reserved.
       </p>
 
       <!-- Social Links -->
-      <div class="flex space-x-4 mt-4 md:mt-0">
+      <div class="mt-4 flex gap-4 md:mt-0">
         <!-- GitHub -->
         <a 
           href="https://github.com/Damiencastro" 
           target="_blank" 
           rel="noopener noreferrer"
-          class="text-gray-400 hover:text-white transition duration-300"
+          class="text-on-inverse-muted transition-colors hover:text-accent-on-inverse"
           aria-label="GitHub Profile"
         >
           <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -99,7 +91,7 @@
           href="https://www.linkedin.com/in/damien-castro-dev" 
           target="_blank" 
           rel="noopener noreferrer"
-          class="text-gray-400 hover:text-white transition duration-300"
+          class="text-on-inverse-muted transition-colors hover:text-accent-on-inverse"
           aria-label="LinkedIn Profile"
         >
           <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -110,7 +102,7 @@
         <!-- Email -->
         <a 
           href="mailto:email@damiencastro.dev"
-          class="text-gray-400 hover:text-white transition duration-300"
+          class="text-on-inverse-muted transition-colors hover:text-accent-on-inverse"
           aria-label="Send Email"
         >
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -121,3 +113,7 @@
     </div>
   </div>
 </footer>
+
+@if (showPaletteSwitcher) {
+  <app-palette-switcher />
+}
