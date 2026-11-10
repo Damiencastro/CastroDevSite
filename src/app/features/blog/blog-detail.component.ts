@@ -1,9 +1,8 @@
-import { Component, inject } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { Component, input } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-blog-detail',
-  standalone: true,
   imports: [RouterLink],
   template: `
     <div class="container mx-auto px-6 py-16">
@@ -13,7 +12,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
       
       <article class="bg-white rounded-lg shadow-md p-8">
         <h1 class="text-4xl font-bold text-gray-800 mb-4">
-          {{ formatSlug(slug) }}
+          {{ formatSlug(slug()) }}
         </h1>
         <p class="text-gray-500 text-sm mb-6">Coming Soon</p>
         <p class="text-gray-600 text-lg">
@@ -24,14 +23,8 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
   `
 })
 export class BlogDetailComponent {
-  private route = inject(ActivatedRoute);
-  slug: string = '';
-
-  constructor() {
-    this.route.params.subscribe(params => {
-      this.slug = params['slug'] || 'Unknown';
-    });
-  }
+  // Bound from the ':slug' route parameter via withComponentInputBinding().
+  readonly slug = input.required<string>();
 
   formatSlug(slug: string): string {
     return slug

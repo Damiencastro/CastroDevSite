@@ -3,7 +3,6 @@ import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-portfolio-list',
-  standalone: true,
   imports: [RouterLink],
   template: `
     <div class="container mx-auto px-6 py-16">
