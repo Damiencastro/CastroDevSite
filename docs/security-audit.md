@@ -49,7 +49,7 @@ A service account JSON key never expires. The roles on the account were assigned
 
 The rules are the real access control for the database, yet they can be changed in the console with no history, no review, and no record in the repository.
 
-**Fix:** add `firestore.rules` to the repository and reference it from `firebase.json`. Grant public read on `blogPosts` and `projects` only, and deny all writes. This also fixes the blog and portfolio pages, which cannot currently load data.
+**Fix:** add `firestore.rules` to the repository and reference it from `firebase.json`. Grant public read on `blogPosts` and `projects` only, and deny all writes. No page reads Firestore yet, so nothing is broken today, but the read rule must be in place before the blog and portfolio pages can load content from it.
 
 ## Medium priority
 
@@ -73,7 +73,7 @@ The site sends no `Content-Security-Policy`, `X-Content-Type-Options`, `X-Frame-
 
 ### 8. Pull request previews use the production backend
 
-Previews are built with the production web config, so preview sites talk to the live Firestore. While the app is read-only this is low risk. It becomes a real problem if the app ever writes data.
+Previews are built with the production web config, so preview sites point at the live Firestore. No page uses Firestore yet, and the service only defines reads, so this is low risk. It becomes a real problem if the app ever writes data.
 
 **Fix:** accept for now and revisit before adding any write path. The usual solution is a second Firebase project for previews.
 
@@ -120,7 +120,7 @@ Two quick pushes to `main` run two deploys in parallel, and the older one can fi
 ## Suggested order
 
 1. Findings 1, 2, and 5 are small workflow and settings changes with no dependencies.
-2. Finding 4 comes next, because it also unblocks the blog and portfolio pages.
+2. Finding 4 comes next, because the blog and portfolio pages will depend on it once they read from Firestore.
 3. Findings 3 and 10 need console access to review roles and key restrictions.
 4. Finding 11 follows 4 and 10, and removes 9 and 14 along the way.
 5. Findings 6, 7, and 13 can be done at any point.

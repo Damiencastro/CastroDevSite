@@ -82,15 +82,15 @@ Each pull request gets its own preview channel, which expires seven days after i
 
 ### Firestore
 
-The app reads two collections through [firebase.service.ts](../src/app/core/services/firebase.service.ts): `blogPosts` and `projects`. It has no sign-in, so every read is anonymous.
+Firestore is configured in the app but not yet used. [firebase.service.ts](../src/app/core/services/firebase.service.ts) defines reads for two collections, `blogPosts` and `projects`, but no page calls it. The blog and portfolio pages show static placeholder content. The app has no sign-in, so any read it does make will be anonymous.
 
 Firestore security rules are not in this repository. They exist only in the Firebase console.
 
-An anonymous read of either collection currently returns `403 PERMISSION_DENIED`. The rules therefore deny public reads, which means the blog and portfolio pages cannot load data on the live site.
+An anonymous read of either collection currently returns `403 PERMISSION_DENIED`. The rules therefore deny public reads. Nothing on the live site is affected today, but the rules will need to allow reads on those collections before any page can use them.
 
 ## Local development
 
-`ng serve` uses the development configuration, which has no file replacement, so it loads the committed [environment.ts](../src/environments/environment.ts) with its `YOUR_API_KEY` placeholders. Pages that do not touch Firestore work; pages that do will fail.
+`ng serve` uses the development configuration, which has no file replacement, so it loads the committed [environment.ts](../src/environments/environment.ts) with its `YOUR_API_KEY` placeholders. Every page works, because none of them reads Firestore yet. Once a page does, it will fail locally until real config is supplied.
 
 To build for production locally, copy `environment.ts` to `src/environments/environment.production.ts` and fill in the real web config from the Firebase console (Project settings → Your apps). That file is gitignored.
 
