@@ -1,53 +1,60 @@
 # Castro.dev
 
-Personal website for Castro.dev, built with [Angular](https://angular.dev) 22 (zoneless), [Tailwind CSS](https://tailwindcss.com) 4 and [AngularFire](https://github.com/angular/angularfire), and deployed to Firebase Hosting.
+The personal website of Damien Castro, software engineer. It presents my projects, writing, and resume.
 
-Requires Node.js 24 (or 22.22.3+).
+**Live site:** <https://damiencastro.dev>
 
-## Development server
+## Status
 
-To start a local development server, run:
+The site is a work in progress. The app shell, navigation, home page, resume, and colour system are built. The about, portfolio, and blog pages hold placeholder content, and the contact form is not yet active. The [route table](docs/architecture.md#routes) lists the state of every page.
 
-```bash
-ng serve
-```
+## Stack
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- [Angular](https://angular.dev) 22, using standalone components, signals, and zoneless change detection
+- [Tailwind CSS](https://tailwindcss.com) 4, with a set of swappable colour palettes
+- [Firebase](https://firebase.google.com) Hosting, with Cloud Firestore configured as the future content store
+- [Vitest](https://vitest.dev) for unit tests
+- GitHub Actions for deployment, with a preview site for every pull request
 
-## Code scaffolding
+## Getting started
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+You need Node.js 24, or 22.22.3 and later.
 
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Install dependencies:
 
 ```bash
-ng generate --help
+npm ci
 ```
 
-## Building
-
-To build the project run:
+Start the development server at `http://localhost:4200`:
 
 ```bash
-ng build
+npm start
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-The production build reads the Firebase configuration from `src/environments/environment.production.ts`, which is not committed (the deploy workflows generate it from repository secrets). To build locally, copy `src/environments/environment.ts` to that path and fill in your values. `ng serve` and development builds use `src/environments/environment.ts` directly.
-
-## Running unit tests
-
-To execute unit tests with [Vitest](https://vitest.dev) (running in jsdom, so no browser is needed), use the following command:
+Run the unit tests:
 
 ```bash
-ng test
+npm test
 ```
 
-## Additional Resources
+Create a production build in `dist/`:
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+```bash
+npm run build
+```
+
+The production build needs a file that is not in the repository. Copy `src/environments/environment.ts` to `src/environments/environment.production.ts` first. The details are in [operations.md](docs/operations.md#local-development).
+
+## Deployment
+
+Opening a pull request deploys the branch to a temporary preview URL. Merging to `main` deploys to the live site. Both are handled by GitHub Actions and described in [operations.md](docs/operations.md).
+
+## Documentation
+
+| Document | What it covers |
+| --- | --- |
+| [Architecture](docs/architecture.md) | How the app is structured: code layout, routes, styling, and data |
+| [Operations](docs/operations.md) | How the site is built, deployed, and configured, and how to roll back |
+| [Decisions](docs/decisions.md) | The significant technical choices and the reasoning behind each |
+| [Security audit](docs/security-audit.md) | A review of the deploy and hosting setup, with planned fixes |
